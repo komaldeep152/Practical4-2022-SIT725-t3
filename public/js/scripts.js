@@ -1,30 +1,43 @@
-const cardList = [
-    {
-        title: "flower2",
-        image: "images/flower2.jpg",
-        link: "About flower2",
-        desciption: "Demo desciption about flower2"
-    },
-    {
-        title: "flower3",
-        image: "images/flower3.jpg",
-        link: "About flower3",
-        desciption: "Demo desciption about flower3"
-    }
-]
+//
+const getProjects = () => {
+    $.get('/api/projects',(response) => {
+        if(response.statusCode==200){
+            console.log(response)
+            addCards(response.data);
+        }
+        else {
+            console.log(response)
+        }
+    })
+}
+
 const clickMe = () => {
     alert("Thanks for clicking me. Hope you have a nice day!")
 }
 
 const submitForm = () => {
-    let formData = {};
-    formData.first_name = $('#first_name').val();
-    formData.last_name = $('#last_name').val();
-    formData.password = $('#password').val();
-    formData.email = $('#email').val();
-
-    console.log("Form Data Submitted: ", formData);
-}
+        let formData = {};
+        formData.title = $('#title').val();
+        formData.image = $('#image').val();
+        formData.link = $('#link').val();
+        formData.description = $('#description').val();
+        
+        console.log("Form Data Submitted: ", formData);
+        addProjectToApp(formData); 
+    }
+    //ajax function...
+    const addProjectToApp = (project) => {
+       $.ajax({
+        url: '/api/projects',
+        data: project,
+        type: 'POST',
+        success: (result) => {
+        alert(result.message);
+       location.reload(); // it automatically reloads the page 
+       }
+     })
+    }
+    
 const addCards = (items) => {
     items.forEach(item => {
         let itemToAppend = '<div class="col s4 center-align">'+
@@ -43,6 +56,6 @@ $(document).ready(function(){
     $('#formSubmit').click(()=>{
         submitForm();
     })
-    addCards(cardList);
+    getProjects();
     $('.modal').modal();
   });
