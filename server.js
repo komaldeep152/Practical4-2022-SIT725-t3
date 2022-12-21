@@ -10,7 +10,7 @@ app.use(cors())
 
 // mongoDb connection....
 const MongoClient = require('mongodb').MongoClient;
-const uri = 'mongodb+srv://komaldeep:gagankomal@cluster0.11bevoe.mongodb.net/?retryWrites=true&w=majority'
+const uri = 'mongodb+srv://komaldeep:komal@cluster0.dt6lze3.mongodb.net/?retryWrites=true&w=majority'
 const client = new MongoClient(uri,{useNewUrlParser: true})
 
 const createCollection = (collectionName) =>{

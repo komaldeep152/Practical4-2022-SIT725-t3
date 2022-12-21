@@ -24,9 +24,10 @@ const submitForm = () => {
         
         console.log("Form Data Submitted: ", formData);
         addProjectToApp(formData); 
-    }
-    //ajax function...
-    const addProjectToApp = (project) => {
+}
+
+//ajax function...
+const addProjectToApp = (project) => {
        $.ajax({
         url: '/api/projects',
         data: project,
@@ -36,7 +37,7 @@ const submitForm = () => {
        location.reload(); // it automatically reloads the page 
        }
      })
-    }
+}
     
 const addCards = (items) => {
     items.forEach(item => {
@@ -51,6 +52,7 @@ const addCards = (items) => {
       $("#card-section").append(itemToAppend)
     });
 }
+
 $(document).ready(function(){
     $('.materialboxed').materialbox();
     $('#formSubmit').click(()=>{
